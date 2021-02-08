@@ -92,16 +92,7 @@ module.exports = {
             console.log("Error in userLogin", err.message)
             return res.status(400).json({ message: `Error in userLogin ${err.message}` })
         }
-    },
-    getUser: async (req, res, next) => {
-        const { email } = req.body
-        const user = await User.aggregate([
-            { $match: { email } }
-        ])
-        return res.status(200).json(user)
-    },
-
-
+    }
 }
 
 
