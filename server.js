@@ -28,6 +28,10 @@ app.use(passport.initialize());
 require('./config/passport')(passport)
 
 
+app.get('/', (req,res)=>{
+    return res.status(200).json({message: "Welcome to Servimate"})
+})
+
 //ROUTES
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/service', serviceRoutes)
@@ -52,7 +56,7 @@ app.use((error, req, res, next) => {
 const PORT = process.env.PORT || 4000;
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/servimate"
+mongoose.connect(process.env.MONGO_URL.replace("<password>", process.env.MONGO_PASSWORD)
     , { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
         console.log("server Started")
         app.listen(PORT)
@@ -60,6 +64,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/servimate"
         console.log("Error in connecting to DataBase", err.message)
     })
 
-// process.env.MONGO_URL.replace("<password>", process.env.MONGO_PASSWORD)
-// "mongodb://127.0.0.1:27017/frontEndProject"
+// 
+
+// mongodb://127.0.0.1:27017/servimate
 

@@ -70,7 +70,7 @@ module.exports = {
         try{
             const {role} =  req.user
             if(role !== "admin"){
-                return res.status(401).json({message:'Unauthorized'})
+                return res.status(403).json({message:'Not allowed'})
             }
             const {serviceId,cities} = req.body
             if(Array.isArray(cities)){

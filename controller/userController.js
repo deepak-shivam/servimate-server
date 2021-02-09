@@ -14,7 +14,7 @@ module.exports = {
     userRegister: async (req, res, next) => {
         try {
             let errors = {}
-            const { name, email, password, phoneNumber } = req.body;
+            const { name, email, password, phoneNumber, role } = req.body;
             const user = await User.findOne({ email })
             if (user) {
                 errors.email = "Email already exist"
@@ -26,7 +26,8 @@ module.exports = {
                 name,
                 email,
                 password: hashedPassword,
-                phoneNumber
+                phoneNumber,
+                role
             })
             // function generateOTP() {
             //     var digits = '0123456789';
